@@ -31,35 +31,30 @@ class BinarySearchTree:
             return
 
         # 코드를 쓰세요
-        if data > self.root.data:
-            if self.root.right_child is None:
-                self.root.right_child = new_node
-                new_node.parent = self.root
-                return
-            else:
-                iterator = self.root.right_child
         else:
-            if self.root.left_child is None:
-                self.root.left_child = new_node
-                new_node.parent = self.root
-                return
-            else:
-                iterator = self.root.left_child
-        while iterator is not None:
-            if data > iterator.data:
-                if iterator.right_child is None:
-                    iterator.right_child = new_node
-                    new_node.parent = iterator
-                    return
+            test_node = self.root
+            while True:
+                if new_node.data > test_node.data:
+
+                    if test_node.right_child == None:
+                        #print(f'parent_node= {test_node.data}\nadded_node= {new_node.data}\n')
+                        test_node.right_child = new_node
+                        new_node.parent = test_node
+                        return
+                    else:
+                        test_node = test_node.right_child
+
                 else:
-                    iterator = iterator.right_child
-            else:
-                if iterator.left_child is None:
-                    iterator.left_child = new_node
-                    new_node.parent = iterator
-                    return
-                else:
-                    iterator = iterator.left_child
+                    if test_node.left_child == None:
+                        #print(f'parent_node= {test_node.data}\nadded_node= {new_node.data}\n')
+                        test_node.left_child = new_node
+                        new_node.parent = test_node
+                        return
+                    else:
+                        test_node = test_node.left_child
+
+
+
 
 
     def print_sorted_tree(self):

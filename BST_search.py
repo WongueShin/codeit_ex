@@ -25,19 +25,20 @@ class BinarySearchTree:
     def search(self, data):
         """이진 탐색 트리 탐색 메소드, 찾는 데이터를 갖는 노드가 없으면 None을 리턴한다"""
         # 코드를 쓰세요
-        iterator = self.root
-        while iterator is not None:
-            if data == iterator.data:
-                return iterator
-
-            if iterator is None:
-                return None
-
-            if data > iterator.data:
-                iterator = iterator.right_child
+        searching_node = self.root
+        while True:
+            if searching_node.data == data:
+                return data
+            elif searching_node.data > data:
+                if searching_node.left_child != None:
+                    searching_node = searching_node.left_child
+                else:
+                    return None
             else:
-                iterator = iterator.left_child
-
+                if searching_node.right_child != None:
+                    searching_node = searching_node.right_child
+                else:
+                    return None
 
     def insert(self, data):
         """이진 탐색 트리 삽입 메소드"""
@@ -94,7 +95,7 @@ bst.insert(4)
 bst.insert(14)
 
 # 노드 탐색과 출력
-print(bst.search(7).data)
-print(bst.search(19).data)
-print(bst.search(2).data)
+print(bst.search(7))
+print(bst.search(19))
+print(bst.search(2))
 print(bst.search(20))
